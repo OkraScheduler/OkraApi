@@ -1,4 +1,4 @@
-# Okra
+# Okra API
 A simple and scalable Scheduler that uses MongoDB as backend
 
 [![codecov](https://codecov.io/gh/fernandonogueira/okra/branch/master/graph/badge.svg)](https://codecov.io/gh/fernandonogueira/okra)
@@ -8,95 +8,7 @@ A simple and scalable Scheduler that uses MongoDB as backend
 * Java 8
 * MongoDB
 
-#### Note
-For now Okra only has one module which requires Spring Data MongoDB to work, but you can send a Pull Request any time creating a new maven module (like okra-spring) that requires only the raw MongoDB Driver.
-
-### Binaries
-
-[![](https://jitpack.io/v/fernandonogueira/okra.svg)](https://jitpack.io/#fernandonogueira/okra)
-
-#### Gradle
-build.gradle
-```groovy
-    allprojects {
-        repositories {
-            ...
-            maven { url "https://jitpack.io" }
-        }
-    }
-```
-
-```groovy
-    dependencies {
-        compile 'com.github.fernandonogueira.okra:okra-spring:x.y.z'
-    }
-```
-
-#### Maven
-```xml
-	<dependency>
-	    <groupId>com.github.fernandonogueira.okra</groupId>
-	    <artifactId>okra-spring</artifactId>
-	    <version>x.y.z</version>
-	</dependency>
-
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-```
-
-### Quick start
-
-Configure a scheduler
-```java
-public class MyScheduler {
-    
-    private Okra okra;
-    ...
-    public void initScheduler() {
-        okra = new OkraSpringBuilder<DefaultOkraItem>()
-                        .withMongoTemplate(new MongoTemplate(client, "schedulerBenchmark"))
-                        .withDatabase("schedulerBenchmark")
-                        .withSchedulerCollectionName("schedulerCollection")
-                        .withExpiration(5, TimeUnit.MINUTES)
-                        .withScheduledItemClass(DefaultOkraItem.class)
-                        .validateAndBuild();        
-    }
-    ...    
-}
-```
-
-Then, use this scheduler to retrieve scheduled items...
-
-```java
-public class MyScheduler {
-    
-    private Okra okra;
-    ...    
-    public void retrieveLoop() {
-        while (running) {
-            Optional<DefaultOkraItem> scheduledOpt = okra.poll();
-                if (scheduled.isPresent()) {
-                    doSomeWork(scheduledOpt.get());                
-                }    
-        }
-    }
-    ...    
-}
-```
-#### Build
-
-To build:
-
-```bash
-$ git clone git@github.com:fernandonogueira/okra.git
-$ cd okra
-$ mvn install -DskipTests
-```
-[![Build Status](https://travis-ci.org/fernandonogueira/okra.svg?branch=master)](https://travis-ci.org/fernandonogueira/okra)
+#### TODO
 
 ### LICENSE
 ```
