@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
-  ~  Copyright (c) 2016 Fernando Nogueira
+  ~  Copyright (c) 2017 Okra Scheduler
   ~
   ~  Permission is hereby granted, free of charge, to any person obtaining a copy
   ~  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +27,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.OkraSheduler</groupId>
+    <groupId>com.github.OkraScheduler</groupId>
     <artifactId>okra-api</artifactId>
     <version>1.0.0</version>
 
