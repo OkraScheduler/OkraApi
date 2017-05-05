@@ -1,4 +1,6 @@
-.idea/
-target/
+# Folder
+.idea
+target
+
+# File
 *.iml
-target/
