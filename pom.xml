@@ -28,7 +28,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.OkraScheduler</groupId>
-    <artifactId>okra-api</artifactId>
+    <artifactId>OkraApi</artifactId>
     <version>1.0.0</version>
 
     <properties>
