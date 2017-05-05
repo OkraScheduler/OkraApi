@@ -21,15 +21,12 @@
  */
 package okra.base;
 
-public abstract class AbstractOkra<T extends OkraItem>
-        implements Okra<T> {
-
-    private final String collection;
+public abstract class AbstractOkra<T extends OkraItem> implements Okra<T> {
 
     private final String database;
+    private final String collection;
 
-    public AbstractOkra(String database,
-                        String collection) {
+    public AbstractOkra(final String database, final String collection) {
         this.collection = collection;
         this.database = database;
         initDbIfNeeded();
@@ -37,12 +34,11 @@ public abstract class AbstractOkra<T extends OkraItem>
 
     protected abstract void initDbIfNeeded();
 
-    String getCollection() {
+    public String getCollection() {
         return collection;
     }
 
-    String getDatabase() {
+    public String getDatabase() {
         return database;
     }
-
 }

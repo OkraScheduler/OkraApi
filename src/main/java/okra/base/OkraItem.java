@@ -47,5 +47,4 @@ public interface OkraItem {
     OkraStatus getStatus();
 
     void setStatus(OkraStatus status);
-
 }

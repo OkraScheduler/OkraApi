@@ -22,4 +22,11 @@
 package okra.exception;
 
 public class OkraRuntimeException extends RuntimeException {
+
+    public OkraRuntimeException() {
+    }
+
+    public OkraRuntimeException(final String message) {
+        super(message);
+    }
 }

@@ -38,22 +38,22 @@ public abstract class OkraBuilder<T extends OkraItem> {
     private Long expireDuration;
     private TimeUnit expireDurationUnit;
 
-    public OkraBuilder<T> withScheduledItemClass(Class<T> scheduledItemClass) {
+    public OkraBuilder<T> withScheduledItemClass(final Class<T> scheduledItemClass) {
         this.scheduleItemClass = scheduledItemClass;
         return this;
     }
 
-    public OkraBuilder<T> withSchedulerCollectionName(String collectionName) {
+    public OkraBuilder<T> withSchedulerCollectionName(final String collectionName) {
         this.collection = collectionName;
         return this;
     }
 
-    public OkraBuilder<T> withDatabase(String database) {
+    public OkraBuilder<T> withDatabase(final String database) {
         this.database = database;
         return this;
     }
 
-    public OkraBuilder<T> withExpiration(long duration, TimeUnit durationUnit) {
+    public OkraBuilder<T> withExpiration(final long duration, final TimeUnit durationUnit) {
         this.expireDuration = duration;
         this.expireDurationUnit = durationUnit;
         return this;
