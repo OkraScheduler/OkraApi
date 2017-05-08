@@ -28,11 +28,25 @@ import java.util.Optional;
 public interface Okra<T extends OkraItem> {
 
     /**
-     * Retrieves a scheduled item from the backend
+     * Retrieves a scheduled item from the backend, deleting it if successful.
+     * <p>
+     * Warning: The item processing is not guaranteed.
+     * If you want to delete the item after the processing is finished in order to
+     * do not delete any items before the processing is done, use method {@link Okra#peek()}
      *
      * @return An optional containing the item if found, otherwise an empty optional
      */
     Optional<T> poll();
+
+    /**
+     * Retrieves a scheduled item from the backend.
+     * <p>
+     * This method doesn't deletes the item if any is found.
+     * Your should call {@link Okra#delete(OkraItem)} after the processing is finished.
+     *
+     * @return An optional containing the item if found, otherwise an empty optional
+     */
+    Optional<T> peek();
 
     /**
      * Reschedule an item that was previously retrieved from the scheduled items pool
