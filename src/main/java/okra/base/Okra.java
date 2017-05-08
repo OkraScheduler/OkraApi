@@ -28,11 +28,29 @@ import java.util.Optional;
 public interface Okra<T extends OkraItem> {
 
     /**
-     * Retrieves a scheduled item from the backend
+     * Retrieves and removes the head of elements,
+     * or returns {@code null} if this queue is empty.
      *
      * @return An optional containing the item if found, otherwise an empty optional
      */
     Optional<T> poll();
+
+    /**
+     * Retrieves, but does not remove, the head of elements,
+     * or returns {@code null} if this queue is empty.
+     *
+     * @return An optional containing the item if found, otherwise an empty optional
+     */
+    Optional<T> peek();
+
+    /**
+     * Retrieves, but does not remove, the head of queue. This method
+     * differs from {@link #peek peek} only in that it throws an exception
+     * if this queue is empty.
+     *
+     * @return An optional containing the item if found, otherwise an empty optional
+     */
+    T retrieve();
 
     /**
      * Reschedule an item that was previously retrieved from the scheduled items pool

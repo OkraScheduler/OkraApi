@@ -22,6 +22,12 @@
  */
 package okra.base;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+
+@Setter(AccessLevel.NONE)
+@Data
 public abstract class AbstractOkra<T extends OkraItem> implements Okra<T> {
 
     private final String database;
@@ -30,16 +36,5 @@ public abstract class AbstractOkra<T extends OkraItem> implements Okra<T> {
     public AbstractOkra(final String database, final String collection) {
         this.collection = collection;
         this.database = database;
-        initDbIfNeeded();
-    }
-
-    protected abstract void initDbIfNeeded();
-
-    public String getCollection() {
-        return collection;
-    }
-
-    public String getDatabase() {
-        return database;
     }
 }
