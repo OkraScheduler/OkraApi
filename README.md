@@ -2,7 +2,7 @@
 
 A simple and scalable Scheduler that uses MongoDB as backend
 
-[![codecov](https://codecov.io/gh/fernandonogueira/okra/branch/master/graph/badge.svg)](https://codecov.io/gh/fernandonogueira/okra)
+[![CodeCov][codecov-badge]][codecov-repo]
 
 ## Requirements
 
@@ -29,3 +29,6 @@ A simple and scalable Scheduler that uses MongoDB as backend
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[codecov-badge]: https://codecov.io/gh/OkraScheduler/OkraApi/branch/master/graph/badge.svg
+[codecov-repo]: https://codecov.io/gh/OkraScheduler/OkraApi
