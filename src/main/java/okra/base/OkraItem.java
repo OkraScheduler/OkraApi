@@ -46,6 +46,4 @@ public interface OkraItem {
      * @return The current status of this scheduled item
      */
     OkraStatus getStatus();
-
-    void setStatus(OkraStatus status);
 }

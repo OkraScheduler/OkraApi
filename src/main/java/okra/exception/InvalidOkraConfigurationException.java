@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.exception;
 
 public class InvalidOkraConfigurationException extends OkraRuntimeException {

@@ -20,22 +20,14 @@
  * SOFTWARE.
  *
  */
-package okra;
+package okra.exception;
 
-import okra.base.AbstractOkra;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+public class OkraException extends Exception {
 
-@RunWith(JUnit4.class)
-public class AbstractOkraTest {
+    public OkraException() {
+    }
 
-    @Test
-    public void shouldReturnDatabaseNameAndCollectionName() {
-        final AbstractOkra okra = OkraTestUtil.create("db", "collection");
-
-        Assertions.assertThat(okra.getCollection()).isEqualTo("collection");
-        Assertions.assertThat(okra.getDatabase()).isEqualTo("db");
+    public OkraException(final String message) {
+        super(message);
     }
 }
