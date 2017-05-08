@@ -36,12 +36,19 @@ public class AbstractOkraTest {
     @Test
     public void test() {
         AbstractOkra okra = new AbstractOkra("db", "collection") {
-            @Override
-            protected void initDbIfNeeded() {
-            }
 
             @Override
             public Optional poll() {
+                return null;
+            }
+
+            @Override
+            public Optional peek() {
+                return null;
+            }
+
+            @Override
+            public OkraItem retrieve() {
                 return null;
             }
 

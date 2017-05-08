@@ -47,6 +47,15 @@ public interface Okra<T extends OkraItem> {
      * @return An optional containing the item if found, otherwise an empty optional
      */
     Optional<T> peek();
+    
+    /**
+     * Retrieves, but does not remove, the head of queue. This method
+     * differs from {@link Okra#peek peek} only in that it throws an exception
+     * if there is no elements available.
+     *
+     * @return An optional containing the item if found, otherwise an empty optional
+     */
+     T retrieve();
 
     /**
      * Reschedule an item that was previously retrieved from the scheduled items pool
