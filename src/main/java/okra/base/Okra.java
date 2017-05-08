@@ -22,6 +22,8 @@
  */
 package okra.base;
 
+import okra.exception.OkraItemNotFoundException;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -55,7 +57,7 @@ public interface Okra<T extends OkraItem> {
      *
      * @return An optional containing the item if found, otherwise an empty optional
      */
-    T retrieve();
+    T retrieve() throws OkraItemNotFoundException;
 
     /**
      * Reschedule an item that was previously retrieved from the scheduled items pool

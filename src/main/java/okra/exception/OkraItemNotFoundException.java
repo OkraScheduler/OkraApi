@@ -20,37 +20,17 @@
  * SOFTWARE.
  *
  */
-package okra.base;
 
-import java.time.LocalDateTime;
+package okra.exception;
 
-public interface OkraItem {
+public class OkraItemNotFoundException extends OkraException {
 
-    String getId();
+    public OkraItemNotFoundException() {
+        super("Okra.Item.Not.Found.Exception");
+    }
 
-    /**
-     * Latest date this entry received a heartBeat
-     *
-     * @return The date of the latest heartbeat
-     */
-    LocalDateTime getHeartbeat();
+    public OkraItemNotFoundException(String message) {
+        super(message);
+    }
 
-    /**
-     * The date this entry should run
-     *
-     * @return The date this entry should run
-     */
-    LocalDateTime getRunDate();
-
-    /**
-     * @return The current status of this scheduled item
-     */
-    OkraStatus getStatus();
-
-    /**
-     * Set OkraItem status
-     *
-     * @param status the new status
-     */
-    void setStatus(OkraStatus status);
 }
