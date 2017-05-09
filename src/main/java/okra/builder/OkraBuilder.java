@@ -22,65 +22,54 @@
   */
 package okra.builder;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+import okra.Preconditions;
 import okra.base.AbstractOkra;
 import okra.base.OkraItem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
+@Setter(AccessLevel.NONE)
+@Data
 public abstract class OkraBuilder<T extends OkraItem> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(OkraBuilder.class);
 
     private String collection;
     private String database;
-    private Class<T> scheduleItemClass;
+    private Class<T> itemClass;
     private Long expireDuration;
     private TimeUnit expireDurationUnit;
 
-    public OkraBuilder<T> withScheduledItemClass(final Class<T> scheduledItemClass) {
-        this.scheduleItemClass = scheduledItemClass;
+    public OkraBuilder<T> withItemClass(final Class<T> itemClass) {
+        this.itemClass = Preconditions.checkConfigurationNotNull(itemClass, "itemClass");
+
+        if (collection == null || collection.isEmpty()) {
+            collection = determineCollectionName(itemClass);
+        }
+
         return this;
     }
 
-    public OkraBuilder<T> withSchedulerCollectionName(final String collectionName) {
-        this.collection = collectionName;
+    public OkraBuilder<T> withCollection(final String collectionName) {
+        this.collection = Preconditions.checkConfigurationNotEmpty(collectionName, "collectionName");
         return this;
     }
 
     public OkraBuilder<T> withDatabase(final String database) {
-        this.database = database;
+        this.database = Preconditions.checkConfigurationNotEmpty(database, "databaseName");
         return this;
     }
 
-    public OkraBuilder<T> withExpiration(final long duration, final TimeUnit durationUnit) {
-        this.expireDuration = duration;
-        this.expireDurationUnit = durationUnit;
+    public OkraBuilder<T> withExpiration(final long duration, final TimeUnit unit) {
+        this.expireDuration = Preconditions.checkConfigurationNotNull(duration, "duration");
+        this.expireDurationUnit = Preconditions.checkConfigurationNotNull(unit, "unit");
         return this;
     }
 
     public abstract AbstractOkra<T> build();
 
-    abstract void validateConfiguration();
-
-    public String getCollection() {
-        return collection;
-    }
-
-    public String getDatabase() {
-        return database;
-    }
-
-    public Class<T> getScheduleItemClass() {
-        return scheduleItemClass;
-    }
-
-    public Long getExpireDuration() {
-        return expireDuration;
-    }
-
-    public TimeUnit getExpireDurationUnit() {
-        return expireDurationUnit;
+    protected String determineCollectionName(final Class<T> itemClass) {
+        return itemClass.getSimpleName();
     }
 }

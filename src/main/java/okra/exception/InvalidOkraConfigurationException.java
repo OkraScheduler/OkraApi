@@ -25,6 +25,10 @@ package okra.exception;
 public class InvalidOkraConfigurationException extends OkraRuntimeException {
 
     public InvalidOkraConfigurationException() {
-        super("MongoScheduler.InvalidConfiguration");
+        this("MongoScheduler.InvalidConfiguration");
+    }
+
+    public InvalidOkraConfigurationException(final String message) {
+        super(message);
     }
 }
