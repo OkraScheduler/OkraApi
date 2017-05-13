@@ -23,7 +23,9 @@
 package okra.base;
 
 import okra.exception.OkraItemNotFoundException;
+import okra.index.IndexDefinition;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -100,7 +102,7 @@ public interface Okra<T extends OkraItem> {
 
     /**
      * Count items by status.
-     *
+     * <p>
      * e.g. how many items are pending? Or How many items are currently processing?
      *
      * @param status
@@ -108,4 +110,21 @@ public interface Okra<T extends OkraItem> {
      */
     long countByStatus(OkraStatus status);
 
+    /**
+     * List of indexes that Okra will need.
+     * This list may change depending on the implementation. It may even be empty in some implementations.
+     *
+     * @return The list of indexes that Okra will need.
+     */
+    List<IndexDefinition> indexDefinitions();
+
+    /**
+     * Sets index definitions
+     */
+    void setIndexDefinitions(List<IndexDefinition> indexDefinitions);
+
+    /**
+     * Runs any previously needed setup or configurations
+     */
+    void setup();
 }
