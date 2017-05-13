@@ -25,6 +25,8 @@ package okra;
 
 import okra.base.AbstractOkra;
 import okra.base.OkraItem;
+import okra.base.OkraStatus;
+import okra.exception.OkraItemNotFoundException;
 
 import java.util.Map;
 import java.util.Optional;
@@ -36,45 +38,49 @@ public class OkraTestUtil {
 
     public static <T extends OkraItem> AbstractOkra<T> create(final String database, final String collection) {
         return new AbstractOkra<T>("db", "collection") {
-
             @Override
             public Optional<T> poll() {
-                throw new UnsupportedOperationException();
+                return null;
             }
 
             @Override
             public Optional<T> peek() {
-                throw new UnsupportedOperationException();
+                return null;
             }
 
             @Override
-            public T retrieve() {
-                throw new UnsupportedOperationException();
+            public T retrieve() throws OkraItemNotFoundException {
+                return null;
             }
 
             @Override
-            public Optional<T> reschedule(final T item) {
-                throw new UnsupportedOperationException();
+            public Optional<T> reschedule(T item) {
+                return null;
             }
 
             @Override
-            public Optional<T> heartbeat(final T item) {
-                throw new UnsupportedOperationException();
+            public Optional<T> heartbeat(T item) {
+                return null;
             }
 
             @Override
-            public Optional<T> heartbeatAndUpdateCustomAttrs(final T item, final Map<String, Object> attrs) {
-                throw new UnsupportedOperationException();
+            public Optional<T> heartbeatAndUpdateCustomAttrs(T item, Map<String, Object> attrs) {
+                return null;
             }
 
             @Override
-            public void delete(final T item) {
-                throw new UnsupportedOperationException();
+            public void delete(T item) {
+
             }
 
             @Override
-            public void schedule(final T item) {
-                throw new UnsupportedOperationException();
+            public void schedule(T item) {
+
+            }
+
+            @Override
+            public long countByStatus(OkraStatus status) {
+                return 0;
             }
         };
     }
