@@ -97,4 +97,15 @@ public interface Okra<T extends OkraItem> {
      * @param item The item to schedule
      */
     void schedule(T item);
+
+    /**
+     * Count items by status.
+     *
+     * e.g. how many items are pending? Or How many items are currently processing?
+     *
+     * @param status
+     * @return The count
+     */
+    long countByStatus(OkraStatus status);
+
 }

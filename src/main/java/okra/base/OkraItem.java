@@ -28,6 +28,8 @@ public interface OkraItem {
 
     String getId();
 
+    void setId(String id);
+
     /**
      * Latest date this entry received a heartBeat
      *
@@ -36,11 +38,25 @@ public interface OkraItem {
     LocalDateTime getHeartbeat();
 
     /**
+     * Set latest date this entry received a heartbeat
+     *
+     * @param lastHeartbeatDate
+     */
+    void setHeartbeat(LocalDateTime lastHeartbeatDate);
+
+    /**
      * The date this entry should run
      *
      * @return The date this entry should run
      */
     LocalDateTime getRunDate();
+
+    /**
+     * Set run date for this item
+     *
+     * @param runDate
+     */
+    void setRunDate(LocalDateTime runDate);
 
     /**
      * @return The current status of this scheduled item
