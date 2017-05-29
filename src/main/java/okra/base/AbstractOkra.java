@@ -20,11 +20,9 @@
  * SOFTWARE.
  *
  */
+
 package okra.base;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
 import okra.index.IndexDefinition;
 import okra.index.Ordering;
 
@@ -32,32 +30,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Setter(AccessLevel.NONE)
-@Data
 public abstract class AbstractOkra<T extends OkraItem> implements Okra<T> {
 
-    private final String database;
-    private final String collection;
-
     private List<IndexDefinition> indexDefinitions;
-
-    public AbstractOkra(final String database, final String collection) {
-        this.collection = collection;
-        this.database = database;
-    }
-
-    @Override
-    public List<IndexDefinition> indexDefinitions() {
-        if (indexDefinitions == null) {
-            return generateDefaultIndexDefinitions();
-        }
-        return indexDefinitions;
-    }
-
-    @Override
-    public void setIndexDefinitions(List<IndexDefinition> indexDefinitions) {
-        this.indexDefinitions = indexDefinitions;
-    }
 
     private List<IndexDefinition> generateDefaultIndexDefinitions() {
         List<String> statusRunDate = new ArrayList<>();
@@ -93,8 +68,20 @@ public abstract class AbstractOkra<T extends OkraItem> implements Okra<T> {
     }
 
     @Override
-    public void setup() {
+    public List<IndexDefinition> indexDefinitions() {
+        if (indexDefinitions == null) {
+            return generateDefaultIndexDefinitions();
+        }
+        return indexDefinitions;
+    }
 
+    @Override
+    public void setIndexDefinitions(List<IndexDefinition> indexDefinitions) {
+        this.indexDefinitions = indexDefinitions;
+    }
+
+    @Override
+    public void setup() {
     }
 
 }

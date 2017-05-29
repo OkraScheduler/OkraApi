@@ -26,7 +26,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import okra.Preconditions;
-import okra.base.AbstractOkra;
+import okra.base.AbstractOkraSync;
 import okra.base.OkraItem;
 
 import java.util.concurrent.TimeUnit;
@@ -67,7 +67,7 @@ public abstract class OkraBuilder<T extends OkraItem> {
         return this;
     }
 
-    public abstract AbstractOkra<T> build();
+    public abstract AbstractOkraSync<T> build();
 
     protected String determineCollectionName(final Class<T> itemClass) {
         return itemClass.getSimpleName();

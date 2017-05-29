@@ -23,7 +23,7 @@
 
 package okra;
 
-import okra.base.AbstractOkra;
+import okra.base.AbstractOkraSync;
 import okra.base.OkraItem;
 import okra.base.OkraStatus;
 import okra.exception.OkraItemNotFoundException;
@@ -36,8 +36,8 @@ public class OkraTestUtil {
     private OkraTestUtil() {
     }
 
-    public static <T extends OkraItem> AbstractOkra<T> create(final String database, final String collection) {
-        return new AbstractOkra<T>("db", "collection") {
+    public static <T extends OkraItem> AbstractOkraSync<T> create(final String database, final String collection) {
+        return new AbstractOkraSync<T>("db", "collection") {
             @Override
             public Optional<T> poll() {
                 return null;

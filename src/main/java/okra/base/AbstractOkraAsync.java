@@ -20,22 +20,27 @@
  * SOFTWARE.
  *
  */
-package okra;
+package okra.base;
 
-import okra.base.AbstractOkra;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+import okra.index.IndexDefinition;
 
-@RunWith(JUnit4.class)
-public class AbstractOkraTest {
+import java.util.List;
 
-    @Test
-    public void shouldReturnDatabaseNameAndCollectionName() {
-        final AbstractOkra okra = OkraTestUtil.create("db", "collection");
+@Setter(AccessLevel.NONE)
+@Data
+public abstract class AbstractOkraAsync<T extends OkraItem> extends AbstractOkra<T> implements OkraAsync<T> {
 
-        Assertions.assertThat(okra.getCollection()).isEqualTo("collection");
-        Assertions.assertThat(okra.getDatabase()).isEqualTo("db");
+    private final String database;
+    private final String collection;
+
+    private List<IndexDefinition> indexDefinitions;
+
+    public AbstractOkraAsync(final String database, final String collection) {
+        this.collection = collection;
+        this.database = database;
     }
+
 }

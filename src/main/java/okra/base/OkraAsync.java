@@ -20,29 +20,13 @@
  * SOFTWARE.
  *
  */
+
 package okra.base;
 
-import okra.index.IndexDefinition;
+import java.util.Optional;
 
-import java.util.List;
+public interface OkraAsync<T extends OkraItem> extends Okra<T> {
 
-public interface Okra<T extends OkraItem> {
+    Optional<T> peek();
 
-    /**
-     * Runs any previously needed setup or configurations
-     */
-    void setup();
-
-    /**
-     * List of indexes that Okra will need.
-     * This list may change depending on the implementation. It may even be empty in some implementations.
-     *
-     * @return The list of indexes that Okra will need.
-     */
-    List<IndexDefinition> indexDefinitions();
-
-    /**
-     * Sets index definitions
-     */
-    void setIndexDefinitions(List<IndexDefinition> indexDefinitions);
 }

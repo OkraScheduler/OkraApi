@@ -20,29 +20,22 @@
  * SOFTWARE.
  *
  */
-package okra.base;
+package okra;
 
-import okra.index.IndexDefinition;
+import okra.base.AbstractOkraSync;
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import java.util.List;
+@RunWith(JUnit4.class)
+public class AbstractOkraSyncTest {
 
-public interface Okra<T extends OkraItem> {
+    @Test
+    public void shouldReturnDatabaseNameAndCollectionName() {
+        final AbstractOkraSync okra = OkraTestUtil.create("db", "collection");
 
-    /**
-     * Runs any previously needed setup or configurations
-     */
-    void setup();
-
-    /**
-     * List of indexes that Okra will need.
-     * This list may change depending on the implementation. It may even be empty in some implementations.
-     *
-     * @return The list of indexes that Okra will need.
-     */
-    List<IndexDefinition> indexDefinitions();
-
-    /**
-     * Sets index definitions
-     */
-    void setIndexDefinitions(List<IndexDefinition> indexDefinitions);
+        Assertions.assertThat(okra.getCollection()).isEqualTo("collection");
+        Assertions.assertThat(okra.getDatabase()).isEqualTo("db");
+    }
 }

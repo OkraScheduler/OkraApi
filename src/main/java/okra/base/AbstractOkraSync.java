@@ -22,27 +22,21 @@
  */
 package okra.base;
 
-import okra.index.IndexDefinition;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
 
-import java.util.List;
+@Setter(AccessLevel.NONE)
+@Data
+public abstract class AbstractOkraSync<T extends OkraItem>
+        extends AbstractOkra<T> implements OkraSync<T> {
 
-public interface Okra<T extends OkraItem> {
+    private final String database;
+    private final String collection;
 
-    /**
-     * Runs any previously needed setup or configurations
-     */
-    void setup();
+    public AbstractOkraSync(final String database, final String collection) {
+        this.collection = collection;
+        this.database = database;
+    }
 
-    /**
-     * List of indexes that Okra will need.
-     * This list may change depending on the implementation. It may even be empty in some implementations.
-     *
-     * @return The list of indexes that Okra will need.
-     */
-    List<IndexDefinition> indexDefinitions();
-
-    /**
-     * Sets index definitions
-     */
-    void setIndexDefinitions(List<IndexDefinition> indexDefinitions);
 }
