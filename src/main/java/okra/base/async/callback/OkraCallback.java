@@ -20,53 +20,8 @@
  * SOFTWARE.
  *
  */
-package okra.base;
 
-import java.time.LocalDateTime;
+package okra.base.async.callback;
 
-public interface OkraItem {
-
-    String getId();
-
-    void setId(String id);
-
-    /**
-     * Latest date this entry received a heartBeat
-     *
-     * @return The date of the latest heartbeat
-     */
-    LocalDateTime getHeartbeat();
-
-    /**
-     * Set latest date this entry received a heartbeat
-     *
-     * @param lastHeartbeatDate
-     */
-    void setHeartbeat(LocalDateTime lastHeartbeatDate);
-
-    /**
-     * The date this entry should run
-     *
-     * @return The date this entry should run
-     */
-    LocalDateTime getRunDate();
-
-    /**
-     * Set run date for this item
-     *
-     * @param runDate
-     */
-    void setRunDate(LocalDateTime runDate);
-
-    /**
-     * @return The current status of this scheduled item
-     */
-    OkraStatus getStatus();
-
-    /**
-     * Set OkraItem status
-     *
-     * @param status the new status
-     */
-    void setStatus(OkraStatus status);
+public interface OkraCallback {
 }

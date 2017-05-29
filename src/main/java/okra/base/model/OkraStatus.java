@@ -20,22 +20,9 @@
  * SOFTWARE.
  *
  */
-package okra;
+package okra.base.model;
 
-import okra.base.sync.AbstractOkraSync;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+public enum OkraStatus {
 
-@RunWith(JUnit4.class)
-public class AbstractOkraSyncTest {
-
-    @Test
-    public void shouldReturnDatabaseNameAndCollectionName() {
-        final AbstractOkraSync okra = OkraTestUtil.create("db", "collection");
-
-        Assertions.assertThat(okra.getCollection()).isEqualTo("collection");
-        Assertions.assertThat(okra.getDatabase()).isEqualTo("db");
-    }
+    PENDING, PROCESSING, DONE
 }

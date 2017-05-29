@@ -26,8 +26,8 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import okra.Preconditions;
-import okra.base.AbstractOkraSync;
-import okra.base.OkraItem;
+import okra.base.model.OkraItem;
+import okra.base.sync.AbstractOkraSync;
 
 import java.util.concurrent.TimeUnit;
 

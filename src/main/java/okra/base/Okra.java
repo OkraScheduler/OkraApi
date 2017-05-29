@@ -22,6 +22,7 @@
  */
 package okra.base;
 
+import okra.base.model.OkraItem;
 import okra.index.IndexDefinition;
 
 import java.util.List;

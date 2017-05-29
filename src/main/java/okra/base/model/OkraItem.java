@@ -20,27 +20,53 @@
  * SOFTWARE.
  *
  */
-package okra.base;
+package okra.base.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
-import okra.index.IndexDefinition;
+import java.time.LocalDateTime;
 
-import java.util.List;
+public interface OkraItem {
 
-@Setter(AccessLevel.NONE)
-@Data
-public abstract class AbstractOkraAsync<T extends OkraItem> extends AbstractOkra<T> implements OkraAsync<T> {
+    String getId();
 
-    private final String database;
-    private final String collection;
+    void setId(String id);
 
-    private List<IndexDefinition> indexDefinitions;
+    /**
+     * Latest date this entry received a heartBeat
+     *
+     * @return The date of the latest heartbeat
+     */
+    LocalDateTime getHeartbeat();
 
-    public AbstractOkraAsync(final String database, final String collection) {
-        this.collection = collection;
-        this.database = database;
-    }
+    /**
+     * Set latest date this entry received a heartbeat
+     *
+     * @param lastHeartbeatDate
+     */
+    void setHeartbeat(LocalDateTime lastHeartbeatDate);
 
+    /**
+     * The date this entry should run
+     *
+     * @return The date this entry should run
+     */
+    LocalDateTime getRunDate();
+
+    /**
+     * Set run date for this item
+     *
+     * @param runDate
+     */
+    void setRunDate(LocalDateTime runDate);
+
+    /**
+     * @return The current status of this scheduled item
+     */
+    OkraStatus getStatus();
+
+    /**
+     * Set OkraItem status
+     *
+     * @param status the new status
+     */
+    void setStatus(OkraStatus status);
 }

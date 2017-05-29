@@ -23,6 +23,7 @@
 
 package okra.base;
 
+import okra.base.model.OkraItem;
 import okra.index.IndexDefinition;
 import okra.index.Ordering;
 

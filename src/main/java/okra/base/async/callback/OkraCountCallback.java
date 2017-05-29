@@ -20,9 +20,15 @@
  * SOFTWARE.
  *
  */
-package okra.base;
 
-public enum OkraStatus {
+package okra.base.async.callback;
 
-    PENDING, PROCESSING, DONE
+public interface OkraCountCallback extends OkraCallback {
+
+    /**
+     * @param count the count if no exception is thrown. Otherwise null
+     * @param t     an exception if any is thrown
+     */
+    void onResult(Long count, Throwable t);
+
 }

@@ -21,8 +21,11 @@
  *
  */
 
-package okra.base;
+package okra.base.sync;
 
+import okra.base.Okra;
+import okra.base.model.OkraItem;
+import okra.base.model.OkraStatus;
 import okra.exception.OkraItemNotFoundException;
 
 import java.util.Map;
@@ -86,14 +89,14 @@ public interface OkraSync<T extends OkraItem> extends Okra<T> {
     Optional<T> heartbeatAndUpdateCustomAttrs(T item, Map<String, Object> attrs);
 
     /**
-     * Delete a scheduled item
+     * Deletes a scheduled item
      *
      * @param item The item to be deleted
      */
     void delete(T item);
 
     /**
-     * Schedule an item
+     * Schedules an item
      *
      * @param item The item to schedule
      */
@@ -108,5 +111,12 @@ public interface OkraSync<T extends OkraItem> extends Okra<T> {
      * @return The count
      */
     long countByStatus(OkraStatus status);
+
+    /**
+     * Counts the number of delayed items that are waiting to be processed.
+     *
+     * @return the count
+     */
+    long countDelayed();
 
 }

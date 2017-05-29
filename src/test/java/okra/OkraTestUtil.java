@@ -23,16 +23,15 @@
 
 package okra;
 
-import okra.base.AbstractOkraSync;
-import okra.base.OkraItem;
-import okra.base.OkraStatus;
+import okra.base.model.OkraItem;
+import okra.base.model.OkraStatus;
+import okra.base.sync.AbstractOkraSync;
 import okra.exception.OkraItemNotFoundException;
 
 import java.util.Map;
 import java.util.Optional;
 
 public class OkraTestUtil {
-
     private OkraTestUtil() {
     }
 
@@ -80,6 +79,11 @@ public class OkraTestUtil {
 
             @Override
             public long countByStatus(OkraStatus status) {
+                return 0;
+            }
+
+            @Override
+            public long countDelayed() {
                 return 0;
             }
         };

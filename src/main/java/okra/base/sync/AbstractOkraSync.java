@@ -20,13 +20,25 @@
  * SOFTWARE.
  *
  */
+package okra.base.sync;
 
-package okra.base;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+import okra.base.AbstractOkra;
+import okra.base.model.OkraItem;
 
-import java.util.Optional;
+@Setter(AccessLevel.NONE)
+@Data
+public abstract class AbstractOkraSync<T extends OkraItem>
+        extends AbstractOkra<T> implements OkraSync<T> {
 
-public interface OkraAsync<T extends OkraItem> extends Okra<T> {
+    private final String database;
+    private final String collection;
 
-    Optional<T> peek();
+    public AbstractOkraSync(final String database, final String collection) {
+        this.collection = collection;
+        this.database = database;
+    }
 
 }

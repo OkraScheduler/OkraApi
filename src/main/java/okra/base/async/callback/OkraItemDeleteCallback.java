@@ -20,23 +20,15 @@
  * SOFTWARE.
  *
  */
-package okra.base;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+package okra.base.async.callback;
 
-@Setter(AccessLevel.NONE)
-@Data
-public abstract class AbstractOkraSync<T extends OkraItem>
-        extends AbstractOkra<T> implements OkraSync<T> {
+public interface OkraItemDeleteCallback extends OkraCallback {
 
-    private final String database;
-    private final String collection;
-
-    public AbstractOkraSync(final String database, final String collection) {
-        this.collection = collection;
-        this.database = database;
-    }
+    /**
+     * @param success true if success
+     * @param t       not null if any exception is thrown
+     */
+    void onResult(boolean success, Throwable t);
 
 }
