@@ -27,8 +27,7 @@ public interface OkraItemDeleteCallback extends OkraCallback {
 
     /**
      * Called when the operation finishes with success
-     * @param success true if operation succeeded
      */
-    void onSuccess(boolean success);
+    void onSuccess();
 
 }
