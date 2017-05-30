@@ -26,9 +26,9 @@ package okra.base.async.callback;
 public interface OkraItemDeleteCallback extends OkraCallback {
 
     /**
-     * @param success true if success
-     * @param t       not null if any exception is thrown
+     * Called when the operation finishes with success
+     * @param success true if operation succeeded
      */
-    void onResult(boolean success, Throwable t);
+    void onSuccess(boolean success);
 
 }

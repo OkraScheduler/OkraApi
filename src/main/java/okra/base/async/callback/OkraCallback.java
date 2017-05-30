@@ -24,4 +24,13 @@
 package okra.base.async.callback;
 
 public interface OkraCallback {
+
+    /**
+     * Called if an error raises
+     *
+     * @param t an exception if any is thrown
+     */
+    void onFailure(Throwable t);
+
+
 }

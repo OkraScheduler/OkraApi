@@ -28,11 +28,10 @@ import okra.base.model.OkraItem;
 public interface OkraItemCallback<T extends OkraItem> extends OkraCallback {
 
     /**
-     * Called when the operation completes.
+     * Called when the operation finishes with success
      *
-     * @param item The optional okra item
-     * @param t
+     * @param item The okra item
      */
-    void onResult(T item, Throwable t);
+    void onSuccess(T item);
 
 }

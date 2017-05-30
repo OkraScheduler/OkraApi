@@ -28,9 +28,9 @@ import okra.base.model.OkraItem;
 public interface OkraItemOperationCallback<T extends OkraItem> extends OkraCallback {
 
     /**
+     * Called when the operation finishes with success
      * @param item the item of successful
-     * @param t    not null if any exception is thrown
      */
-    void onResult(T item, Throwable t);
+    void onSuccess(T item);
 
 }
