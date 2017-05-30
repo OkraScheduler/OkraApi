@@ -26,6 +26,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import okra.Preconditions;
+import okra.base.Okra;
 import okra.base.model.OkraItem;
 import okra.base.sync.AbstractOkraSync;
 
@@ -67,7 +68,7 @@ public abstract class OkraBuilder<T extends OkraItem> {
         return this;
     }
 
-    public abstract AbstractOkraSync<T> build();
+    public abstract Okra<T> build();
 
     protected String determineCollectionName(final Class<T> itemClass) {
         return itemClass.getSimpleName();
