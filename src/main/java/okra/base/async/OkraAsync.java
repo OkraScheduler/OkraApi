@@ -24,9 +24,7 @@
 package okra.base.async;
 
 import okra.base.Okra;
-import okra.base.async.callback.OkraCountCallback;
-import okra.base.async.callback.OkraItemCallback;
-import okra.base.async.callback.OkraItemOperationCallback;
+import okra.base.async.callback.*;
 import okra.base.model.OkraItem;
 import okra.base.model.OkraStatus;
 import okra.base.sync.OkraSync;
@@ -61,7 +59,7 @@ public interface OkraAsync<T extends OkraItem> extends Okra<T> {
      * @param item
      * @param callback
      */
-    void delete(T item, OkraItemOperationCallback callback);
+    void delete(T item, OkraItemDeleteCallback callback);
 
     /**
      * Reschedule an item that was previously retrieved from the scheduled items pool
@@ -69,7 +67,7 @@ public interface OkraAsync<T extends OkraItem> extends Okra<T> {
      * @param item
      * @param callback
      */
-    void reschedule(T item, OkraItemOperationCallback callback);
+    void reschedule(T item, OkraItemOperationCallback<T> callback);
 
     /**
      * Heartbeat an item to prevent that other scheduled item consumers acquire this same item
@@ -77,7 +75,7 @@ public interface OkraAsync<T extends OkraItem> extends Okra<T> {
      * @param item
      * @param callback
      */
-    void heartbeat(T item, OkraItemOperationCallback callback);
+    void heartbeat(T item, OkraItemOperationCallback<T> callback);
 
     /**
      * Schedules an item
@@ -85,7 +83,7 @@ public interface OkraAsync<T extends OkraItem> extends Okra<T> {
      * @param item
      * @param callback
      */
-    void schedule(T item, OkraItemOperationCallback callback);
+    void schedule(T item, OkraItemScheduleCallback callback);
 
     /**
      * Count items by status.
