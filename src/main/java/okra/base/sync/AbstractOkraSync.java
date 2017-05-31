@@ -24,14 +24,15 @@ package okra.base.sync;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import okra.base.AbstractOkra;
 import okra.base.model.OkraItem;
 
+@EqualsAndHashCode(callSuper = true)
 @Setter(AccessLevel.NONE)
 @Data
-public abstract class AbstractOkraSync<T extends OkraItem>
-        extends AbstractOkra<T> implements OkraSync<T> {
+public abstract class AbstractOkraSync<T extends OkraItem> extends AbstractOkra<T> implements OkraSync<T> {
 
     private final String database;
     private final String collection;
@@ -40,5 +41,4 @@ public abstract class AbstractOkraSync<T extends OkraItem>
         this.collection = collection;
         this.database = database;
     }
-
 }

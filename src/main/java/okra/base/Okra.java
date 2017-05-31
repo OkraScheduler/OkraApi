@@ -23,7 +23,7 @@
 package okra.base;
 
 import okra.base.model.OkraItem;
-import okra.index.IndexDefinition;
+import okra.index.IndexDef;
 
 import java.util.List;
 
@@ -40,10 +40,10 @@ public interface Okra<T extends OkraItem> {
      *
      * @return The list of indexes that Okra will need.
      */
-    List<IndexDefinition> indexDefinitions();
+    List<IndexDef> getIndexDefs();
 
     /**
      * Sets index definitions
      */
-    void setIndexDefinitions(List<IndexDefinition> indexDefinitions);
+    void setIndexDefs(List<IndexDef> indexDefs);
 }

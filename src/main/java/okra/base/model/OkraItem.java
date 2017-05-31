@@ -26,8 +26,14 @@ import java.time.LocalDateTime;
 
 public interface OkraItem {
 
+    /**
+     * @return
+     */
     String getId();
 
+    /**
+     * @param id
+     */
     void setId(String id);
 
     /**

@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra;
 
 import okra.base.model.OkraItem;
@@ -32,11 +31,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public class OkraTestUtil {
+
     private OkraTestUtil() {
     }
 
     public static <T extends OkraItem> AbstractOkraSync<T> create(final String database, final String collection) {
         return new AbstractOkraSync<T>("db", "collection") {
+
             @Override
             public Optional<T> poll() {
                 return null;
@@ -69,12 +70,10 @@ public class OkraTestUtil {
 
             @Override
             public void delete(T item) {
-
             }
 
             @Override
             public void schedule(T item) {
-
             }
 
             @Override

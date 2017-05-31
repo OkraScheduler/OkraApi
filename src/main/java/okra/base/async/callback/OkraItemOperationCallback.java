@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async.callback;
 
 import okra.base.model.OkraItem;
@@ -29,8 +28,8 @@ public interface OkraItemOperationCallback<T extends OkraItem> extends OkraCallb
 
     /**
      * Called when the operation finishes with success
+     *
      * @param item the item of successful
      */
     void onSuccess(T item);
-
 }

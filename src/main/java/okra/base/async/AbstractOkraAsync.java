@@ -24,13 +24,15 @@ package okra.base.async;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import okra.base.AbstractOkra;
 import okra.base.model.OkraItem;
-import okra.index.IndexDefinition;
+import okra.index.IndexDef;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Setter(AccessLevel.NONE)
 @Data
 public abstract class AbstractOkraAsync<T extends OkraItem> extends AbstractOkra<T> implements OkraAsync<T> {
@@ -38,11 +40,10 @@ public abstract class AbstractOkraAsync<T extends OkraItem> extends AbstractOkra
     private final String database;
     private final String collection;
 
-    private List<IndexDefinition> indexDefinitions;
+    private List<IndexDef> indexDefs;
 
     public AbstractOkraAsync(final String database, final String collection) {
         this.collection = collection;
         this.database = database;
     }
-
 }

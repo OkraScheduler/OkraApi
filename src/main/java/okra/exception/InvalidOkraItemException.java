@@ -20,10 +20,10 @@
  * SOFTWARE.
  *
  */
-
 package okra.exception;
 
 public class InvalidOkraItemException extends OkraRuntimeException {
+
     public InvalidOkraItemException() {
         super("Invalid Okra Item");
     }

@@ -20,16 +20,12 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async.callback;
 
 public interface OkraItemDeleteCallback extends OkraCallback {
 
     /**
      * Called when the operation finishes with success
-     *
-     * @param success true if operation succeeded. (The item was really deleted)
      */
-    void onSuccess(boolean success);
-
+    void onSuccess(long deletedCount);
 }

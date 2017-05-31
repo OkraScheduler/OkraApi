@@ -20,15 +20,14 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async.callback;
 
 public interface OkraCountCallback extends OkraCallback {
 
     /**
      * Called when the operation finishes with success
+     *
      * @param count the count if no exception is thrown. Otherwise null
      */
     void onSuccess(Long count);
-
 }

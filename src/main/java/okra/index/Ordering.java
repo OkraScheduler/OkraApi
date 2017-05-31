@@ -20,9 +20,9 @@
  * SOFTWARE.
  *
  */
-
 package okra.index;
 
 public enum Ordering {
+
     ASC, DESC
 }

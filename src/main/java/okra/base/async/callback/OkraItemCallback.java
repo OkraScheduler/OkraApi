@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async.callback;
 
 import okra.base.model.OkraItem;
@@ -33,5 +32,4 @@ public interface OkraItemCallback<T extends OkraItem> extends OkraCallback {
      * @param item The okra item
      */
     void onSuccess(T item);
-
 }

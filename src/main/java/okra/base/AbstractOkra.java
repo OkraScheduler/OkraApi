@@ -20,69 +20,39 @@
  * SOFTWARE.
  *
  */
-
 package okra.base;
 
+import lombok.Data;
 import okra.base.model.OkraItem;
-import okra.index.IndexDefinition;
+import okra.index.IndexDef;
 import okra.index.Ordering;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Data
 public abstract class AbstractOkra<T extends OkraItem> implements Okra<T> {
 
-    private List<IndexDefinition> indexDefinitions;
-
-    private List<IndexDefinition> generateDefaultIndexDefinitions() {
-        List<String> statusRunDate = new ArrayList<>();
-        statusRunDate.add("status");
-        statusRunDate.add("runDate");
-
-        IndexDefinition statusRunDateDef = new IndexDefinition();
-        statusRunDateDef.setAttrs(statusRunDate);
-        statusRunDateDef.setOrdering(Ordering.ASC);
-
-
-        List<String> statusHeartbeat = new ArrayList<>();
-        statusHeartbeat.add("status");
-        statusHeartbeat.add("heartbeat");
-
-        IndexDefinition statusHeartbeatDef = new IndexDefinition();
-        statusHeartbeatDef.setAttrs(statusHeartbeat);
-        statusHeartbeatDef.setOrdering(Ordering.ASC);
-
-        List<String> idStatusHeartbeat = new ArrayList<>();
-        idStatusHeartbeat.add("_id");
-        idStatusHeartbeat.add("status");
-        idStatusHeartbeat.add("heartbeat");
-
-        IndexDefinition idStatusHeartbeatDef = new IndexDefinition();
-        idStatusHeartbeatDef.setAttrs(idStatusHeartbeat);
-        idStatusHeartbeatDef.setOrdering(Ordering.ASC);
-
-        return Arrays.asList(
-                statusRunDateDef,
-                statusHeartbeatDef,
-                idStatusHeartbeatDef);
-    }
-
-    @Override
-    public List<IndexDefinition> indexDefinitions() {
-        if (indexDefinitions == null) {
-            return generateDefaultIndexDefinitions();
-        }
-        return indexDefinitions;
-    }
-
-    @Override
-    public void setIndexDefinitions(List<IndexDefinition> indexDefinitions) {
-        this.indexDefinitions = indexDefinitions;
-    }
+    private List<IndexDef> indexDefs;
 
     @Override
     public void setup() {
+        indexDefs = generateDefaultIndexDefs();
     }
 
+    private List<IndexDef> generateDefaultIndexDefs() {
+        return Arrays.asList(
+                new IndexDef(
+                        Arrays.asList("status", "runDate"),
+                        Ordering.ASC
+                ),
+                new IndexDef(
+                        Arrays.asList("status", "heartbeat"),
+                        Ordering.ASC
+                ), new IndexDef(
+                        Arrays.asList("_id", "status", "heartbeat"),
+                        Ordering.ASC
+                )
+        );
+    }
 }

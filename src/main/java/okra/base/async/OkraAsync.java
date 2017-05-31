@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async;
 
 import okra.base.Okra;

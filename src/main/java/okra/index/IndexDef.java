@@ -20,30 +20,20 @@
  * SOFTWARE.
  *
  */
-
 package okra.index;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public class IndexDefinition {
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class IndexDef {
 
     private List<String> attrs;
 
     private Ordering ordering;
-
-    public List<String> getAttrs() {
-        return attrs;
-    }
-
-    public void setAttrs(List<String> attrs) {
-        this.attrs = attrs;
-    }
-
-    public Ordering getOrdering() {
-        return ordering;
-    }
-
-    public void setOrdering(Ordering ordering) {
-        this.ordering = ordering;
-    }
 }

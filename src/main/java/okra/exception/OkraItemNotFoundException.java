@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.exception;
 
 public class OkraItemNotFoundException extends OkraException {
@@ -29,8 +28,7 @@ public class OkraItemNotFoundException extends OkraException {
         super("Okra.Item.Not.Found.Exception");
     }
 
-    public OkraItemNotFoundException(String message) {
+    public OkraItemNotFoundException(final String message) {
         super(message);
     }
-
 }

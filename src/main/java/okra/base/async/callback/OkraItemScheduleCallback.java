@@ -20,16 +20,12 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async.callback;
 
 public interface OkraItemScheduleCallback extends OkraCallback {
 
     /**
      * Called when the operation finishes with success
-     *
-     * @param success true if success
      */
-    void onResult(boolean success);
-
+    void onSuccess();
 }

@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.sync;
 
 import okra.base.Okra;
@@ -118,5 +117,4 @@ public interface OkraSync<T extends OkraItem> extends Okra<T> {
      * @return the count
      */
     long countDelayed();
-
 }

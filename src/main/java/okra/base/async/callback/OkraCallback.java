@@ -20,7 +20,6 @@
  * SOFTWARE.
  *
  */
-
 package okra.base.async.callback;
 
 public interface OkraCallback {
@@ -28,9 +27,7 @@ public interface OkraCallback {
     /**
      * Called if an error raises
      *
-     * @param t an exception if any is thrown
+     * @param throwable an exception if any is thrown
      */
-    void onFailure(Throwable t);
-
-
+    void onFailure(Throwable throwable);
 }
