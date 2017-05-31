@@ -2,10 +2,13 @@ package okra.serialization;
 
 import okra.util.DateUtil;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -44,6 +47,8 @@ public class Serializer {
         try {
             final T model = clazz.newInstance();
             final Field[] fields = clazz.getDeclaredFields();
+
+            parseIdField(model, document);
 
             for (final Field field : fields) {
                 parseSingleField(model, field, document);
@@ -90,6 +95,18 @@ public class Serializer {
                 break;
             default:
                 // Object type: Not supported yet
+        }
+    }
+
+    private <T> void parseIdField(final T model, final Document document) {
+        try {
+            final ObjectId objectId = document.getObjectId("_id");
+            final String id = objectId == null ? null : objectId.toString();
+            final Method method = model.getClass().getMethod("setId");
+
+            method.invoke(model, id);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            // Just ignore it
         }
     }
 }
