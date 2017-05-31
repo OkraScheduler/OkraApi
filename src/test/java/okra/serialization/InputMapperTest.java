@@ -13,13 +13,13 @@ import java.util.Date;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SerializerTest {
+public class InputMapperTest {
 
-    private Serializer serializer;
+    private InputMapper mapper;
 
     @Before
     public void setUp() {
-        serializer = new Serializer();
+        mapper = new InputMapper();
     }
 
     @Test
@@ -27,7 +27,7 @@ public class SerializerTest {
         final Document document = Mockito.mock(Document.class);
 
         Mockito.when(document.getString("field")).thenReturn("StringValue");
-        final Optional<ToSerialize.WithStringField> modelOpt = serializer
+        final Optional<ToSerialize.WithStringField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithStringField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -39,7 +39,7 @@ public class SerializerTest {
         final Document document = Mockito.mock(Document.class);
 
         Mockito.when(document.getInteger("field")).thenReturn(10);
-        final Optional<ToSerialize.WithIntegerField> modelOpt = serializer
+        final Optional<ToSerialize.WithIntegerField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithIntegerField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -51,7 +51,7 @@ public class SerializerTest {
         final Document document = Mockito.mock(Document.class);
 
         Mockito.when(document.getDouble("field")).thenReturn(2d);
-        final Optional<ToSerialize.WithDoubleField> modelOpt = serializer
+        final Optional<ToSerialize.WithDoubleField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithDoubleField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -63,7 +63,7 @@ public class SerializerTest {
         final Document document = Mockito.mock(Document.class);
 
         Mockito.when(document.getBoolean("field")).thenReturn(true);
-        final Optional<ToSerialize.WithBooleanField> modelOpt = serializer
+        final Optional<ToSerialize.WithBooleanField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithBooleanField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -76,7 +76,7 @@ public class SerializerTest {
         final Date now = new Date();
 
         Mockito.when(document.getDate("field")).thenReturn(now);
-        final Optional<ToSerialize.WithLocalDateTimeField> modelOpt = serializer
+        final Optional<ToSerialize.WithLocalDateTimeField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithLocalDateTimeField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -89,7 +89,7 @@ public class SerializerTest {
         final Date now = new Date();
 
         Mockito.when(document.getDate("field")).thenReturn(now);
-        final Optional<ToSerialize.WithDateField> modelOpt = serializer
+        final Optional<ToSerialize.WithDateField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithDateField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -103,7 +103,7 @@ public class SerializerTest {
         Mockito.when(document.getString("field"))
                 .thenReturn(ToSerialize.WithEnumerationField.Whatever.Test1.name());
 
-        final Optional<ToSerialize.WithEnumerationField> modelOpt = serializer
+        final Optional<ToSerialize.WithEnumerationField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithEnumerationField.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();
@@ -118,7 +118,7 @@ public class SerializerTest {
         Mockito.when(document.getString("fieldString")).thenReturn("StringValue");
         Mockito.when(document.getInteger("fieldInteger")).thenReturn(3);
 
-        final Optional<ToSerialize.WithTwoFields> modelOpt = serializer
+        final Optional<ToSerialize.WithTwoFields> modelOpt = mapper
                 .fromDocument(ToSerialize.WithTwoFields.class, document);
 
         Assertions.assertThat(modelOpt.isPresent()).isTrue();

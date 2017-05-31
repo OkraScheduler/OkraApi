@@ -1,5 +1,6 @@
 package okra.serialization;
 
+import okra.Preconditions;
 import okra.util.DateUtil;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -9,41 +10,16 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Optional;
 
-public class Serializer {
+class InputMapper {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(Serializer.class);
-
-    private enum FieldType {
-
-        DOUBLE(Double.class, Float.class, BigDecimal.class, double.class, float.class),
-        INTEGER(Byte.class, Integer.class, Short.class, Long.class, int.class, byte.class, short.class, long.class),
-        STRING(Character.class, String.class, char.class, Enum.class),
-        BOOLEAN(Boolean.class, boolean.class),
-        DATETIME(LocalDateTime.class),
-        DATE(Date.class),
-        OBJECT;
-
-        private final Class<?>[] types;
-
-        FieldType(Class<?>... classes) {
-            this.types = classes;
-        }
-
-        public static FieldType get(Class<?> clazz) {
-            return Arrays.stream(FieldType.values())
-                    .filter(typeClass -> Arrays.stream(typeClass.types).anyMatch(type -> type.isAssignableFrom(clazz)))
-                    .findFirst()
-                    .orElse(OBJECT);
-        }
-    }
+    private final static Logger LOGGER = LoggerFactory.getLogger(InputMapper.class);
 
     public <T> Optional<T> fromDocument(final Class<T> clazz, final Document document) {
+        Preconditions.checkNotNull(clazz, "clazz");
+        Preconditions.checkNotNull(document, "document");
+
         try {
             final T model = clazz.newInstance();
             final Field[] fields = clazz.getDeclaredFields();
@@ -55,8 +31,8 @@ public class Serializer {
             }
 
             return Optional.of(model);
-        } catch (InstantiationException | IllegalAccessException e) {
-            LOGGER.error("Error serializing object with type [{}} from document [{}}", clazz, document);
+        } catch (final InstantiationException | IllegalAccessException e) {
+            LOGGER.error("Error serializing object with type [{}} from document [{}}", clazz, document, e);
         }
 
         return Optional.empty();
@@ -65,7 +41,9 @@ public class Serializer {
     @SuppressWarnings("unchecked")
     private <T> void parseSingleField(final T model, final Field field, final Document document)
             throws IllegalAccessException {
-        FieldType type = FieldType.get(field.getType());
+        final FieldType type = FieldType.get(field.getType());
+
+        if (field.getName().equals("id")) return;
 
         field.setAccessible(true);
 
@@ -94,7 +72,7 @@ public class Serializer {
                 field.set(model, document.getDate(field.getName()));
                 break;
             default:
-                // Object type: Not supported yet
+                // TODO: Object type - Not supported yet
         }
     }
 
@@ -105,7 +83,7 @@ public class Serializer {
             final Method method = model.getClass().getMethod("setId");
 
             method.invoke(model, id);
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        } catch (final NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             // Just ignore it
         }
     }

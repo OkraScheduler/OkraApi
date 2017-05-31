@@ -29,6 +29,15 @@ public class Preconditions {
     private Preconditions() {
     }
 
+    public static <T> T checkNotNull(final T reference, final String field) {
+        if (reference == null) {
+            final String message = String.format("Field \"%s\" shout not be null", field);
+            throw new NullPointerException(message);
+        }
+
+        return reference;
+    }
+
     public static <T> T checkConfigurationNotNull(final T reference, final String field) {
         if (reference == null) {
             final String message = String.format("Field \"%s\" shout not be null", field);
