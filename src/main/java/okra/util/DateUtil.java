@@ -18,32 +18,32 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
  */
-package okra.base;
+package okra.util;
 
-import okra.base.model.OkraItem;
-import okra.base.model.index.IndexDef;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
-import java.util.List;
+public final class DateUtil {
 
-public interface Okra<T extends OkraItem> {
+    public static Date toDate(final LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return null;
+        }
 
-    /**
-     * Runs any previously needed setup or configurations
-     */
-    void setup();
+        return Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
-    /**
-     * List of indexes that Okra will need.
-     * This list may change depending on the implementation. It may even be empty in some implementations.
-     *
-     * @return The list of indexes that Okra will need.
-     */
-    List<IndexDef> getIndexDefs();
+    public static LocalDateTime toLocalDateTime(final Date date) {
+        if (date == null) {
+            return null;
+        }
 
-    /**
-     * Sets index definitions
-     */
-    void setIndexDefs(List<IndexDef> indexDefs);
+        return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+    }
+
+    public static Date nowMinusSeconds(final long seconds) {
+        return DateUtil.toDate(LocalDateTime.now().minusSeconds(seconds));
+    }
 }

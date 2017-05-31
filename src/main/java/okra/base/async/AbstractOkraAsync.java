@@ -28,7 +28,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import okra.base.AbstractOkra;
 import okra.base.model.OkraItem;
-import okra.index.IndexDef;
+import okra.base.model.index.IndexDef;
 
 import java.util.List;
 

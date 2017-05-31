@@ -20,9 +20,20 @@
  * SOFTWARE.
  *
  */
-package okra.index;
+package okra.base.model.index;
 
-public enum Ordering {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    ASC, DESC
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class IndexDef {
+
+    private List<String> attrs;
+
+    private Ordering ordering;
 }

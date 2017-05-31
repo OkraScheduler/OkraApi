@@ -24,8 +24,8 @@ package okra.base;
 
 import lombok.Data;
 import okra.base.model.OkraItem;
-import okra.index.IndexDef;
-import okra.index.Ordering;
+import okra.base.model.index.IndexDef;
+import okra.base.model.index.Ordering;
 
 import java.util.Arrays;
 import java.util.List;
