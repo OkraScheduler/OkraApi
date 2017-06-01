@@ -10,9 +10,10 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Optional;
 
-class InputMapper {
+class InputMapper extends AbstractMapper {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(InputMapper.class);
 
@@ -22,7 +23,7 @@ class InputMapper {
 
         try {
             final T model = clazz.newInstance();
-            final Field[] fields = clazz.getDeclaredFields();
+            final List<Field> fields = getFields(clazz);
 
             parseIdField(model, document);
 

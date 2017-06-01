@@ -11,9 +11,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
-class OutputMapper {
+class OutputMapper extends AbstractMapper {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(OutputMapper.class);
 
@@ -26,7 +27,7 @@ class OutputMapper {
         Preconditions.checkNotNull(document, "document");
 
         try {
-            final Field[] fields = model.getClass().getDeclaredFields();
+            final List<Field> fields = getFields(model.getClass());
 
             parseIdField(model, document);
 
