@@ -80,7 +80,7 @@ class InputMapper {
         try {
             final ObjectId objectId = document.getObjectId("_id");
             final String id = objectId == null ? null : objectId.toString();
-            final Method method = model.getClass().getMethod("setId");
+            final Method method = model.getClass().getDeclaredMethod("setId", String.class);
 
             method.invoke(model, id);
         } catch (final NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
