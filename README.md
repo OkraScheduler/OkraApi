@@ -1,8 +1,8 @@
 # Okra API
 
-A simple and scalable Scheduler that uses MongoDB as backend
+A simple and scalable Scheduler that uses MongoDB as backend.
 
-[![CodeCov][codecov-badge]][codecov-repo]
+[![Build Status][travis-badge]][travis-url] [![Code Coverage][codecov-badge]][codecov-url] [![Artifacts][jitpack-badge]][jitpack-url]
 
 ## Requirements
 
@@ -31,4 +31,8 @@ A simple and scalable Scheduler that uses MongoDB as backend
     limitations under the License.
 
 [codecov-badge]: https://codecov.io/gh/OkraScheduler/OkraApi/branch/master/graph/badge.svg
-[codecov-repo]: https://codecov.io/gh/OkraScheduler/OkraApi
+[codecov-url]: https://codecov.io/gh/OkraScheduler/OkraApi
+[travis-badge]: https://travis-ci.org/OkraScheduler/OkraApi.svg?branch=master
+[travis-url]: https://travis-ci.org/OkraScheduler/OkraApi
+[jitpack-badge]: https://jitpack.io/v/OkraScheduler/OkraApi.svg
+[jitpack-url]: https://jitpack.io/#OkraScheduler/OkraApi
