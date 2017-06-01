@@ -52,8 +52,12 @@ class InputMapper extends AbstractMapper {
             case DOUBLE:
                 field.set(model, document.getDouble(field.getName()));
                 break;
+            case SHORT:
             case INTEGER:
                 field.set(model, document.getInteger(field.getName()));
+                break;
+            case LONG:
+                field.set(model, document.getLong(field.getName()));
                 break;
             case STRING:
                 final String value = document.getString(field.getName());

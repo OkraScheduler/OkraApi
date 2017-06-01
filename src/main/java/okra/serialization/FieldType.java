@@ -8,7 +8,9 @@ import java.util.Date;
 enum FieldType {
 
     DOUBLE(Double.class, Float.class, BigDecimal.class, double.class, float.class),
-    INTEGER(Byte.class, Integer.class, Short.class, Long.class, int.class, byte.class, short.class, long.class),
+    SHORT(Byte.class, Short.class, byte.class, short.class),
+    INTEGER(Integer.class, int.class),
+    LONG(Long.class, long.class),
     STRING(Character.class, String.class, char.class, Enum.class),
     BOOLEAN(Boolean.class, boolean.class),
     DATETIME(LocalDateTime.class),

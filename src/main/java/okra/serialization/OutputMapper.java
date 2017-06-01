@@ -57,7 +57,9 @@ class OutputMapper extends AbstractMapper {
         if (value == null) return;
 
         switch (type) {
+            case SHORT:
             case INTEGER:
+            case LONG:
             case DOUBLE:
             case BOOLEAN:
             case DATE:
