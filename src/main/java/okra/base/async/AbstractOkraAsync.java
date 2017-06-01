@@ -28,9 +28,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import okra.base.AbstractOkra;
 import okra.base.model.OkraItem;
-import okra.base.model.index.IndexDef;
-
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Setter(AccessLevel.NONE)
@@ -39,8 +36,6 @@ public abstract class AbstractOkraAsync<T extends OkraItem> extends AbstractOkra
 
     private final String database;
     private final String collection;
-
-    private List<IndexDef> indexDefs;
 
     public AbstractOkraAsync(final String database, final String collection) {
         this.collection = collection;
