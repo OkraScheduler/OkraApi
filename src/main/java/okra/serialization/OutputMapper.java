@@ -85,9 +85,8 @@ class OutputMapper extends AbstractMapper {
 
     private <T> void parseIdField(final T model, final Document document) {
         try {
-            final Method method = model.getClass().getMethod("getId");
-            final Object value = method.invoke(model);
-
+            final Method method = getMethod(model.getClass(), "getId");
+            final Object value = method == null ? null : method.invoke(model);
             if (value != null) document.put("_id", new ObjectId(String.valueOf(value)));
         } catch (final NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             // Just ignore it

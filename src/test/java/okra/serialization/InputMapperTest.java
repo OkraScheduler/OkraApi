@@ -38,7 +38,7 @@ public class InputMapperTest {
     public void shouldParseADocumentWithIntegerFieldValueTest() {
         final Document document = Mockito.mock(Document.class);
 
-        Mockito.when(document.getInteger("field")).thenReturn(10);
+        Mockito.when(document.get("field")).thenReturn(10);
         final Optional<ToSerialize.WithIntegerField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithIntegerField.class, document);
 
@@ -50,7 +50,7 @@ public class InputMapperTest {
     public void shouldParseADocumentWithDoubleFieldValueTest() {
         final Document document = Mockito.mock(Document.class);
 
-        Mockito.when(document.getDouble("field")).thenReturn(2d);
+        Mockito.when(document.get("field")).thenReturn(2d);
         final Optional<ToSerialize.WithDoubleField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithDoubleField.class, document);
 
@@ -62,7 +62,7 @@ public class InputMapperTest {
     public void shouldParseADocumentWithBooleanFieldValueTest() {
         final Document document = Mockito.mock(Document.class);
 
-        Mockito.when(document.getBoolean("field")).thenReturn(true);
+        Mockito.when(document.get("field")).thenReturn(true);
         final Optional<ToSerialize.WithBooleanField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithBooleanField.class, document);
 
@@ -88,7 +88,7 @@ public class InputMapperTest {
         final Document document = Mockito.mock(Document.class);
         final Date now = new Date();
 
-        Mockito.when(document.getDate("field")).thenReturn(now);
+        Mockito.when(document.get("field")).thenReturn(now);
         final Optional<ToSerialize.WithDateField> modelOpt = mapper
                 .fromDocument(ToSerialize.WithDateField.class, document);
 
@@ -116,7 +116,7 @@ public class InputMapperTest {
         final Document document = Mockito.mock(Document.class);
 
         Mockito.when(document.getString("fieldString")).thenReturn("StringValue");
-        Mockito.when(document.getInteger("fieldInteger")).thenReturn(3);
+        Mockito.when(document.get("fieldInteger")).thenReturn(3);
 
         final Optional<ToSerialize.WithTwoFields> modelOpt = mapper
                 .fromDocument(ToSerialize.WithTwoFields.class, document);

@@ -50,14 +50,12 @@ class InputMapper extends AbstractMapper {
 
         switch (type) {
             case DOUBLE:
-                field.set(model, document.getDouble(field.getName()));
-                break;
             case SHORT:
             case INTEGER:
-                field.set(model, document.getInteger(field.getName()));
-                break;
             case LONG:
-                field.set(model, document.getLong(field.getName()));
+            case BOOLEAN:
+            case DATE:
+                field.set(model, document.get(field.getName()));
                 break;
             case STRING:
                 final String value = document.getString(field.getName());
@@ -67,14 +65,8 @@ class InputMapper extends AbstractMapper {
                     field.set(model, value);
                 }
                 break;
-            case BOOLEAN:
-                field.set(model, document.getBoolean(field.getName()));
-                break;
             case DATETIME:
                 field.set(model, DateUtil.toLocalDateTime(document.getDate(field.getName())));
-                break;
-            case DATE:
-                field.set(model, document.getDate(field.getName()));
                 break;
             default:
                 // TODO: Object type - Not supported yet
@@ -85,9 +77,8 @@ class InputMapper extends AbstractMapper {
         try {
             final ObjectId objectId = document.getObjectId("_id");
             final String id = objectId == null ? null : objectId.toString();
-            final Method method = model.getClass().getDeclaredMethod("setId", String.class);
-
-            method.invoke(model, id);
+            final Method method = getMethod(model.getClass(), "setId");
+            if (method != null && id != null) method.invoke(model, id);
         } catch (final NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             // Just ignore it
         }
