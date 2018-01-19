@@ -16,7 +16,7 @@ A simple and scalable Scheduler that uses MongoDB as backend.
 
     MIT License
 
-    Copyright 2017 Okra Scheduler
+    Copyright 2018 Okra Scheduler
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
